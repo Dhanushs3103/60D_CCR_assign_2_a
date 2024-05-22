@@ -14,11 +14,10 @@ function Posts() {
     try {
       let res = await axios({
         method: "get",
-        url: `https://reqres.in/api/users`,
+        url: `https://jsonplaceholder.typicode.com/posts`,
       });
       setLoading(false);
-      setPosts(res?.data?.data);
-      // console.log(res?.data?.data);
+      setPosts(res?.data);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -41,19 +40,17 @@ function Posts() {
         Click to display list of posts
       </button>
       {/*mapping over the posts*/}
-      <div style={{display:"flex",justifyContent:"center", gap:"20px"}}>
+      <div >
         {posts?.map((post, id) => {
           return (
             <Post
               key={id}
-              first_name={post.first_name}
-              last_name={post.last_name}
-              avatar={post.avatar}
-              email={post.email}
+              title={post.title}
+              body={post.body}
             />
           );
         })}
-      </div>
+    </div>
     </div>
   );
 }
